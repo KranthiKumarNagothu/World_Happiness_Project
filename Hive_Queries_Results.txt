@@ -1,0 +1,124 @@
+kranthi@LAPTOP-CRNI3FFE:~$ sudo su - hadoop
+[sudo] password for kranthi:
+hadoop@LAPTOP-CRNI3FFE:~$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hadoop/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hadoop/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 644b674b-cf49-4f3f-a30e-2531888e620f
+
+Logging initialized using configuration in jar:file:/home/hadoop/hive/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+
+hive> create database Happiness_data1;
+OK
+Time taken: 0.117 seconds
+hive> use Happiness_data1;
+OK
+Time taken: 0.059 seconds
+hive> create table average_happiness_by_region(Region string,AverageHappinessScore double)
+    >      row format delimited fields terminated by ','
+    >      TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.153 seconds
+hive> describe average_happiness_by_region ;
+OK
+region                  string
+averagehappinessscore   double
+Time taken: 0.13 seconds, Fetched: 2 row(s)
+hive> load data inpath  '/data/average_happiness_by_region.csv' into table average_happiness_by_region ;
+FAILED: SemanticException Line 1:18 Invalid path ''/data/average_happiness_by_region.csv'': No files matching path hdfs://localhost:9000/data/average_happiness_by_region.csv
+hive> LOAD DATA INPATH '/data/average_happiness_by_region.csv' INTO TABLE average_happiness_by_region;
+Loading data to table happiness_data1.average_happiness_by_region
+OK
+Time taken: 0.614 seconds
+hive> select *from average_happiness_by_region limit 5;
+OK
+Australia and New Zealand       7.285
+North America   7.273
+Western Europe  6.689619047619048
+Latin America and Caribbean     6.1446818181818195
+Eastern Asia    5.626166666666666
+Time taken: 0.383 seconds, Fetched: 5 row(s)
+hive> create table top_10_happiest_countries(Country string,HappinessScore double)
+    >            row format delimited fields terminated by ','
+    >             TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.181 seconds
+hive> describe top_10_happiest_countries;
+OK
+country                 string
+happinessscore          double
+Time taken: 0.146 seconds, Fetched: 2 row(s)
+hive> load data inpath  '/data/top_10_happiest_countries.csv' into table top_10_happiest_countries ;
+Loading data to table happiness_data1.top_10_happiest_countries
+OK
+Time taken: 0.405 seconds
+hive> select * from top_10_happiest_countries;
+OK
+Switzerland     7.587
+Iceland 7.561
+Denmark 7.527
+Norway  7.522
+Canada  7.427
+Finland 7.406
+Netherlands     7.378
+Sweden  7.364
+New Zealand     7.286
+Australia       7.284
+Time taken: 0.255 seconds, Fetched: 10 row(s)
+hive> create table bottom_10_happiness_countries(Country string,HappinessScore double)
+    >            row format delimited fields terminated by ','
+    >            TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.143 seconds
+hive> describe bottom_10_happiness_countries;
+OK
+country                 string
+happinessscore          double
+Time taken: 0.1 seconds, Fetched: 2 row(s)
+hive> load data inpath  '/data/bottom_10_happiness_countries.csv' into table bottom_10_happiness_countries ;
+Loading data to table happiness_data1.bottom_10_happiness_countries
+OK
+Time taken: 0.4 seconds
+hive> select * from bottom_10_happiness_countries;
+OK
+Togo    2.839
+Burundi 2.905
+Syria   3.006
+Benin   3.34
+Rwanda  3.465
+Afghanistan     3.575
+Burkina Faso    3.587
+Ivory Coast     3.655
+Guinea  3.656
+Chad    3.667
+Time taken: 0.304 seconds, Fetched: 10 row(s)
+hive> show tables;
+OK
+average_happiness_by_region
+bottom_10_happiness_countries
+top_10_happiest_countries
+Time taken: 0.159 seconds, Fetched: 3 row(s)
+hive> create table Correlation_Metrics(Correlation_Economy double, Correlation_Family double, Correlation_Health double, Correlation_Freedom double, Correlation_Trust double, Correlation_Generosity double)
+    >            row format delimited fields terminated by ','
+    >            TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.153 seconds
+hive> load data inpath  '/data/Correlation_Metrics.csv' into table Correlation_Metrics;
+Loading data to table happiness_data1.correlation_metrics
+OK
+Time taken: 0.461 seconds
+hive> select * from Correlation_Metrics;
+OK
+0.7809655268660222      0.7406051972367849      0.7241995951050696   0.5682109041925183       0.39519858383691153     0.180318526697175
+Time taken: 0.315 seconds, Fetched: 1 row(s)
+hive> show tables;
+OK
+average_happiness_by_region
+bottom_10_happiness_countries
+correlation_metrics
+top_10_happiest_countries
+Time taken: 0.066 seconds, Fetched: 4 row(s)
+hive>

@@ -1,0 +1,125 @@
+kranthi@LAPTOP-CRNI3FFE:~$ sudo su - hadoop
+[sudo] password for kranthi:
+hadoop@LAPTOP-CRNI3FFE:~$ hadoop fs -mkdir Happiness_data;
+hadoop@LAPTOP-CRNI3FFE:~$ sqoop import --connect jdbc:mysql://localhost/World_Happiness --username root -P --table
+Happiness_data --target-dir /Happiness_data -m 1
+Warning: /home/hadoop/sqoop/../hbase does not exist! HBase imports will fail.
+Please set $HBASE_HOME to the root of your HBase installation.
+Warning: /home/hadoop/sqoop/../hcatalog does not exist! HCatalog jobs will fail.
+Please set $HCAT_HOME to the root of your HCatalog installation.
+Warning: /home/hadoop/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+Warning: /home/hadoop/sqoop/../zookeeper does not exist! Accumulo imports will fail.
+Please set $ZOOKEEPER_HOME to the root of your Zookeeper installation.
+2023-09-23 18:10:02,857 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Missing argument for option: table
+Happiness_data: command not found
+hadoop@LAPTOP-CRNI3FFE:~$ sqoop import --connect jdbc:mysql://localhost/World_Happiness --username root -P --table Happiness_data --target-dir /Happiness_data -m 1
+Warning: /home/hadoop/sqoop/../hbase does not exist! HBase imports will fail.
+Please set $HBASE_HOME to the root of your HBase installation.
+Warning: /home/hadoop/sqoop/../hcatalog does not exist! HCatalog jobs will fail.
+Please set $HCAT_HOME to the root of your HCatalog installation.
+Warning: /home/hadoop/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+Warning: /home/hadoop/sqoop/../zookeeper does not exist! Accumulo imports will fail.
+Please set $ZOOKEEPER_HOME to the root of your Zookeeper installation.
+2023-09-23 18:11:44,578 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+2023-09-23 18:11:48,312 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+2023-09-23 18:11:48,313 INFO tool.CodeGenTool: Beginning code generation
+Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+2023-09-23 18:11:49,529 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `Happiness_data` AS t LIMIT 1
+2023-09-23 18:11:49,636 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `Happiness_data` AS t LIMIT 1
+2023-09-23 18:11:49,664 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /home/hadoop/hadoop
+Note: /tmp/sqoop-hadoop/compile/2a04fb762395034873d01042e36d2533/Happiness_data.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+2023-09-23 18:11:54,867 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-hadoop/compile/2a04fb762395034873d01042e36d2533/Happiness_data.jar
+2023-09-23 18:11:54,904 WARN manager.MySQLManager: It looks like you are importing from mysql.
+2023-09-23 18:11:54,905 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+2023-09-23 18:11:54,905 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+2023-09-23 18:11:54,905 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+2023-09-23 18:11:54,918 INFO mapreduce.ImportJobBase: Beginning import of Happiness_data
+2023-09-23 18:11:54,920 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+2023-09-23 18:11:55,169 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+2023-09-23 18:11:56,361 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2023-09-23 18:11:56,588 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at /0.0.0.0:8032
+2023-09-23 18:11:57,575 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hadoop/.staging/job_1695459176628_0006
+2023-09-23 18:12:00,855 INFO db.DBInputFormat: Using read commited transaction isolation
+2023-09-23 18:12:00,937 INFO mapreduce.JobSubmitter: number of splits:1
+2023-09-23 18:12:01,219 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1695459176628_0006
+2023-09-23 18:12:01,219 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2023-09-23 18:12:01,654 INFO conf.Configuration: resource-types.xml not found
+2023-09-23 18:12:01,654 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2023-09-23 18:12:02,200 INFO impl.YarnClientImpl: Submitted application application_1695459176628_0006
+2023-09-23 18:12:02,293 INFO mapreduce.Job: The url to track the job: http://LAPTOP-CRNI3FFE.:8088/proxy/application_1695459176628_0006/
+2023-09-23 18:12:02,295 INFO mapreduce.Job: Running job: job_1695459176628_0006
+2023-09-23 18:12:17,019 INFO mapreduce.Job: Job job_1695459176628_0006 running in uber mode : false
+2023-09-23 18:12:17,047 INFO mapreduce.Job:  map 0% reduce 0%
+2023-09-23 18:12:29,289 INFO mapreduce.Job:  map 100% reduce 0%
+2023-09-23 18:12:29,313 INFO mapreduce.Job: Job job_1695459176628_0006 completed successfully
+2023-09-23 18:12:29,584 INFO mapreduce.Job: Counters: 33
+        File System Counters
+                FILE: Number of bytes read=0
+                FILE: Number of bytes written=285841
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=87
+                HDFS: Number of bytes written=12846
+                HDFS: Number of read operations=6
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+                HDFS: Number of bytes read erasure-coded=0
+        Job Counters
+                Launched map tasks=1
+                Other local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=8999
+                Total time spent by all reduces in occupied slots (ms)=0
+                Total time spent by all map tasks (ms)=8999
+                Total vcore-milliseconds taken by all map tasks=8999
+                Total megabyte-milliseconds taken by all map tasks=9214976
+        Map-Reduce Framework
+                Map input records=157
+                Map output records=157
+                Input split bytes=87
+                Spilled Records=0
+                Failed Shuffles=0
+                Merged Map outputs=0
+                GC time elapsed (ms)=214
+                CPU time spent (ms)=4200
+                Physical memory (bytes) snapshot=229388288
+                Virtual memory (bytes) snapshot=2582745088
+                Total committed heap usage (bytes)=203423744
+                Peak Map Physical memory (bytes)=229388288
+                Peak Map Virtual memory (bytes)=2582745088
+        File Input Format Counters
+                Bytes Read=0
+        File Output Format Counters
+                Bytes Written=12846
+2023-09-23 18:12:29,600 INFO mapreduce.ImportJobBase: Transferred 12.5449 KB in 33.2149 seconds (386.7546 bytes/sec)
+2023-09-23 18:12:29,605 INFO mapreduce.ImportJobBase: Retrieved 157 records.
+
+hadoop@LAPTOP-CRNI3FFE:~$ hadoop fs -ls /
+Found 9 items
+drwxr-xr-x   - hadoop supergroup          0 2023-09-23 18:45 /Happiness_data
+
+drwxr-xr-x   - hadoop supergroup          0 2023-09-22 16:30 /input
+drwxr-xr-x   - hadoop supergroup          0 2023-09-23 12:52 /kranthi1
+drwxrwxr-x   - hadoop supergroup          0 2023-09-22 23:31 /tmp
+drwxr-xr-x   - hadoop supergroup          0 2023-09-22 23:20 /user
+hadoop@LAPTOP-CRNI3FFE:~$ hadoop fs -ls /Happiness_data
+Found 2 items
+-rw-r--r--   1 hadoop supergroup          0 2023-09-23 18:45 /Happiness_data/_SUCCESS
+-rw-r--r--   1 hadoop supergroup      12846 2023-09-23 18:45 /Happiness_data/part-m-00000
+hadoop@LAPTOP-CRNI3FFE:~$  hadoop fs -cat /Happiness_data/part-m-00000  | head -n 10
+Switzerland,Western Europe,1,7.59,0.0341,1.40,1.35,0.94,0.67,0.42,0.30,2.52
+Iceland,Western Europe,2,7.56,0.0488,1.30,1.40,0.95,0.63,0.14,0.44,2.70
+Denmark,Western Europe,3,7.53,0.0333,1.33,1.36,0.87,0.65,0.48,0.34,2.49
+Norway,Western Europe,4,7.52,0.0388,1.46,1.33,0.89,0.67,0.37,0.35,2.47
+Canada,North America,5,7.43,0.0355,1.33,1.32,0.91,0.63,0.33,0.46,2.45
+Finland,Western Europe,6,7.41,0.0314,1.29,1.32,0.89,0.64,0.41,0.23,2.62
+Netherlands,Western Europe,7,7.38,0.0280,1.33,1.28,0.89,0.62,0.32,0.48,2.47
+Sweden,Western Europe,8,7.36,0.0316,1.33,1.29,0.91,0.66,0.44,0.36,2.37
+New Zealand,Australia and New Zealand,9,7.29,0.0337,1.25,1.32,0.91,0.64,0.43,0.48,2.26
+Australia,Australia and New Zealand,10,7.28,0.0408,1.33,1.31,0.93,0.65,0.36,0.44,2.27
+hadoop@LAPTOP-CRNI3FFE:~$

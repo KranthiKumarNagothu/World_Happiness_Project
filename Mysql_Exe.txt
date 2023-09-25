@@ -1,0 +1,75 @@
+kranthi@LAPTOP-CRNI3FFE:~$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use World_Happiness;
+Database changed
+mysql> CREATE TABLE Happiness_data (
+    ->
+    ->     Country VARCHAR(255),
+    ->     Region VARCHAR(255),
+    ->     HappinessRank INT PRIMARY KEY,
+    ->     HappinessScore DECIMAL(10, 2),
+    ->     StandardError DECIMAL(10, 4),
+    ->     EconomyGDPperCapita DECIMAL(10, 2),
+    ->     Family DECIMAL(10, 2),
+    ->     HealthLifeExpectancy DECIMAL(10, 2),
+    ->     Freedom DECIMAL(10, 2),
+    ->     TrustGovernmentCorruption DECIMAL(10, 2),
+    ->     Generosity DECIMAL(10, 2),
+  Dysto    ->     DystopiaResidual DECIMAL(10, 2)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> describe Happiness_data;
++---------------------------+---------------+------+-----+---------+-------+
+| Field                     | Type          | Null | Key | Default | Extra |
++---------------------------+---------------+------+-----+---------+-------+
+| Country                   | varchar(255)  | YES  |     | NULL    |       |
+| Region                    | varchar(255)  | YES  |     | NULL    |       |
+| HappinessRank             | int           | NO   | PRI | NULL    |       |
+| HappinessScore            | decimal(10,2) | YES  |     | NULL    |       |
+| StandardError             | decimal(10,4) | YES  |     | NULL    |       |
+| EconomyGDPperCapita       | decimal(10,2) | YES  |     | NULL    |       |
+| Family                    | decimal(10,2) | YES  |     | NULL    |       |
+| HealthLifeExpectancy      | decimal(10,2) | YES  |     | NULL    |       |
+| Freedom                   | decimal(10,2) | YES  |     | NULL    |       |
+| TrustGovernmentCorruption | decimal(10,2) | YES  |     | NULL    |       |
+| Generosity                | decimal(10,2) | YES  |     | NULL    |       |
+| DystopiaResidual          | decimal(10,2) | YES  |     | NULL    |       |
++---------------------------+---------------+------+-----+---------+-------+
+12 rows in set (0.01 sec)
+
+mysql> LOAD DATA LOCAL INFILE '/mnt/d/Input1/happiness_data.csv'
+    -> INTO TABLE Happiness_data
+    -> FIELDS TERMINATED BY ','
+    -> LINES TERMINATED BY '\r\n'
+    -> IGNORE 1 LINES;
+Query OK, 157 rows affected, 1382 warnings (0.07 sec)
+Records: 158  Deleted: 0  Skipped: 1  Warnings: 1382
+
+mysql> select * from Happiness_data limit 5;
++-------------+----------------+---------------+----------------+---------------+---------------------+--------+----------------------+---------+---------------------------+------------+------------------+
+| Country     | Region         | HappinessRank | HappinessScore | StandardError | EconomyGDPperCapita | Family | HealthLifeExpectancy | Freedom | TrustGovernmentCorruption | Generosity | DystopiaResidual |
++-------------+----------------+---------------+----------------+---------------+---------------------+--------+----------------------+---------+---------------------------+------------+------------------+
+| Switzerland | Western Europe |             1 |           7.59 |        0.0341 |                1.40 |   1.35 |                 0.94 |    0.67 |                      0.42 |       0.30 |             2.52 |
+| Iceland     | Western Europe |             2 |           7.56 |        0.0488 |                1.30 |   1.40 |                 0.95 |    0.63 |                      0.14 |       0.44 |             2.70 |
+| Denmark     | Western Europe |             3 |           7.53 |        0.0333 |                1.33 |   1.36 |                 0.87 |    0.65 |                      0.48 |       0.34 |             2.49 |
+| Norway      | Western Europe |             4 |           7.52 |        0.0388 |                1.46 |   1.33 |                 0.89 |    0.67 |                      0.37 |       0.35 |             2.47 |
+| Canada      | North America  |             5 |           7.43 |        0.0355 |                1.33 |   1.32 |                 0.91 |    0.63 |                      0.33 |       0.46 |             2.45 |
++-------------+----------------+---------------+----------------+---------------+---------------------+--------+----------------------+---------+---------------------------+------------+------------------+
+5 rows in set (0.01 sec)
+
+mysql> exit
+Bye
+kranthi@LAPTOP-CRNI3FFE:~$
