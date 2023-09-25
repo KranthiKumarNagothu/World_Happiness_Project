@@ -1,0 +1,91 @@
+World Happiness Data Pipeline for Societal Analysis
+
+Problem Statement: A global non-profit organization wants to analyze the World Happiness Report data to understand societal trends, 
+the impact of various factors on happiness, and differences between countries. They need to build a data pipeline that collects, processes, 
+and analyzes data from various sources to generate meaningful insights for decision-making. As a data engineer, your task is to design and implement the data pipeline to support this analysis.
+
+Dataset:
+The dataset for this project will consist of the World Happiness Report dataset, which includes the following information:
+
+●	Country: Name of the country.
+●	Happiness Rank: Rank of the country based on the Happiness Score.
+●	Happiness Score: A metric measured by asking the sampled people the question: "How would you rate your happiness on a scale of 0 to 10 where 10 is the happiest."
+●	Economy (GDP per Capita), Family, Health (Life Expectancy), Freedom, Trust (Government Corruption), Generosity, Dystopia Residual: Various factors contributing to the happiness score.
+
+Project Steps:
+Data Collection:
+Download the dataset from Kaggle.
+
+Data Ingestion:
+Create an ingestion process to receive and store the raw data from the CSV file.
+Use tools like Apache Sqoop for batch data ingestion.
+Store the data in a data lake or distributed file system (e.g., HDFS).
+
+Data Processing:
+Design ETL (Extract, Transform, Load) processes to cleanse and transform the raw data.
+Implement data quality checks and filtering to ensure data integrity.
+Utilize Apache Spark for distributed data processing and transformation.
+Apply data modeling techniques (e.g., data normalization, denormalization) as per the analysis requirements.
+
+
+
+
+Data Storage:
+Choose a suitable database or data warehouse (e.g., Apache Hive, Apache HBase) for storing processed data.
+Create optimized tables and partitions for efficient querying and analysis.
+Ensure data security and privacy measures are in place.
+
+Data Analysis and Visualization:
+Use SQL queries or Spark SQL to extract relevant insights from the processed data.
+Perform societal analysis based on happiness scores, contributing factors, and differences between countries.
+Generate reports, dashboards, and visualizations using tools like Apache Superset, Tableau, or Power BI.
+
+Overall architecture flow:
+
+ 
+
+
+Task 1: Data Ingestion and Storage
+
+Outcome: Ingest the World Happiness Report data into Hadoop using Apache Sqoop, process it using Apache Spark, and store the results in HBase.
+
+Deliverables:
+Sqoop command to ingest data from the CSV file into Hadoop.
+Spark code to process the ingested data.
+Hive commands to store the processed data.
+
+Task 2: Societal Analysis
+
+Outcome: Analyze the World Happiness Report data to identify societal trends, the impact of various factors on happiness, and differences between countries using Apache Spark and SQL queries.
+
+Deliverables:
+Spark code and SQL queries to analyze the World Happiness Report data.
+A report detailing the societal trends, impact of various factors on happiness, and differences between countries in the data.
+
+Task 3: Data Visualization
+
+Outcome: Create visualizations of the societal trends, impact of various factors on happiness, and differences between countries using a tool like Apache Superset, Tableau, or Power BI.
+
+Deliverables:
+Visual representations (e.g., line charts, bar charts, heatmaps) of the societal trends, impact of various factors on happiness, and differences between countries.
+A dashboard that displays the visualizations and allows users to interact with the data.
+
+●	Correlation between happiness score and contributing factors (e.g., economy, family, health, freedom, trust, generosity)
+●	Top 10 countries with the highest and lowest happiness scores\
+●	Happiness score per country
+
+
+
+For all these tasks, you can use the World Happiness Report dataset mentioned above. Please note that you might need to preprocess the dataset to fit the exact requirements of the assignment. Also, remember to respect the terms of use for the dataset.
+
+ Tools required to achieve the end dashboard:
+
+1.	Hadoop ( hdfs , hive , spark )
+2.	Tableau/Power BI
+
+
+
+
+
+
+
